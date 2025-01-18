@@ -1,0 +1,37 @@
+<% layout('layouts/boillerplate') %>
+
+<div class="container mt-3">
+  <% if (destination) { %>
+    <div  class="alert alert-success  alert-dismissible fade show col-6 offset-3 mt-2"  role="alert">
+     Search Results for "<%= destination %>"
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+   
+  <% } %>
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3 justify-content-center ms-3">
+    <% if (listings && listings.length > 0) { %>
+      <% listings.forEach(listing => { %>
+        <div class="card col-6 listing-card offset-3 ms-3 mt-3">
+          <h4><b><%= listing.title %></b></h4>
+        
+          <img src="<%= listing.image?.url || '/default-image.jpg' %>" 
+               class="card-img-top" alt="listing-image" style="height: 20rem; ">
+
+          <div class="card-body">
+            <p class="card-text"><%= listing.description %></p>
+            <p class="card-text">&#8377; <%= listing.price.toLocaleString("en-IN") %></p>
+            <p class="card-text"><%= listing.country %></p>
+            <p class="card-text"><%= listing.location %></p>
+          </div>
+        </div>
+      <% }); %>
+    <% } else { %>
+      <div class="text-center">
+        <h4 class="text-danger mt-3">No listings found for "<%= destination || 'the provided search criteria' %>".</h4>
+        <a href="/listings" class="btn btn-primary mt-3">Go Back to Listings</a>
+      </div>
+    <% } %>
+  </div>
+</div>
+<br>

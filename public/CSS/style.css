@@ -1,0 +1,181 @@
+/* Navbar */
+body {
+    font-family: 'Jakarta Sans', sans-serif !important;
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+
+  }
+
+  .conatiner{
+     flex: 1;
+  }
+
+ h3{
+     padding-left: 3rem;
+  }
+ 
+.navbar {
+height: 5rem;
+background-color: white;
+}
+
+.fa-compass{
+    color: #fe424d;
+    font-size: 2rem;
+
+}
+
+.nav-link{
+    color: #222222 !important;
+}
+
+
+/* footer */
+.f-info-Links a {
+    text-decoration: none;
+    color: #222222;
+}
+.f-info-Links a :hover{
+    text-decoration:underline;
+}
+
+.f-info-Links{
+    width: 100%;
+}
+.f-info-Links,
+.f-info-socials,
+.f-info-brands {
+    width: 100%;
+   vertical-align: middle;
+   align-items: center;
+   display: flex;
+   justify-content: center;
+}
+
+.f-info-socials{
+    width: 100%;
+    font-size: 1.2rem;
+    margin-right: 2rem;
+}
+.f-info-socials i{
+ font-size: 1.2rem;
+  margin-right: 1rem;
+
+}
+.f-info{
+    text-align: center;
+    height: 8rem;
+    display: flex;
+    background-color:#ebebeb ;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+
+}
+
+/* cards */
+
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0 !important;
+}
+
+.card-text p{
+    font-weight: 400 ;
+}
+
+.row{
+    padding: 0 3rem;
+
+}
+
+.listing-links{
+    text-decoration: none;
+}
+
+/* card effect */
+.card-img-overlay{
+   opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+.add-btn {
+ 
+    border: none !important;
+    background-color:  #fe424d; /* Dark gray background (Bootstrap's dark color) */
+}
+
+.edit-btn{
+    border: none !important;
+   
+    background-color:  #fe424d; 
+
+}
+
+/* show page*/
+.show-img{
+     height: 30vh;
+
+}
+
+.btns{
+    display: flex;
+}
+
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.review-card {
+ border-radius: 1rem !important;
+   
+    padding: 20px;
+    width: 250px;
+    border-radius: 8px;
+   margin-left: 1rem;
+   display: inline-block;
+   flex-wrap: wrap;
+    font-size: 1rem;
+}
+
+.review-card .card-body {
+    padding: 0 !important;
+}
+
+
+
+
+.review-card p {
+ 
+    margin: 5px 0;
+    font-size: 1.1rem; /* Increase text size for better readability */
+}
+
+/* map */
+#map {
+    height: 300px;
+    width: 100vh;
+    margin-left:2rem;
+}
+
+.map-container h4{
+    margin-left: 2rem;
+}
+
+
+
