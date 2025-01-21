@@ -97,7 +97,7 @@ app.use((req,res,next)=>{
 
 // Main page route (home)
 app.get("/", (req, res) => {
-    res.render('listings/index.ejs');
+    res.render('listings/index.ejs',{ AllListings });
 });
 
 
