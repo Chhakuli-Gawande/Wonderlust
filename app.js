@@ -1,12 +1,8 @@
-if(process.env.NODE_ENV != "production"){
-    require('dotenv').config();
-}
-
-
-
 const express = require("express");
 const app = express();
-const port = 8080;
+
+const port = process.env.PORT || 8080;
+
 const mongoose = require("mongoose")
 const path = require("path");
 const methodOverride = require("method-override");
@@ -18,6 +14,7 @@ const flash = require("connect-flash");
 const User = require("./model/user.js");
 const passport = require('passport');
 const LocalStrategy = require('passport-local'); 
+require('dotenv').config();
 
 const dbUrl = process.env.ATLASDB_URL;
 main()
@@ -56,7 +53,7 @@ class ExpressError extends Error {
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     crypto: {
-        secret: process.env.SECRET
+        secret:process.env.SECRET
       },
     touchAfter: 24 * 3600,
 });
@@ -99,10 +96,13 @@ app.use((req,res,next)=>{
 });
 
 
-
+app.get('/', (req, res) => {
+    res.send('Welcome to Wonderlust!');
+});
 
 //routes
  const listings = require("./routes/listings.js");
+
  const reviews = require("./routes/reviews.js");
  const user = require("./routes/user.js");
  const listingsRoutes = require('./routes/listings');
