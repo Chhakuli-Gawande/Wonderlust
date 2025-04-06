@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+// Adjust the path as necessary
 
 const Schema = mongoose.Schema; 
 const Review = require("./review");

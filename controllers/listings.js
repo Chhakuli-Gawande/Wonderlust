@@ -3,9 +3,10 @@ const Listing = require("../model/listing");
 const path = require("path");
 
 module.exports.index = async(req,res)=>{
-
+       
     const AllListings= await Listing.find({});
     console.log(path.join(__dirname, 'views/listings/index.ejs'));
+    
     res.render('listings/index.ejs',{ AllListings });
     
   };

@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 
-const Listing = require("../model/listing");
+const Listing = require('../model/listing');
+
 
 const wrapAsync = require("../utils/wrapAsync");
 const ExpressError = require("../utils/ExpressError");
@@ -16,6 +17,7 @@ const SearchListingController = require("../controllers/listings");
 const multer = require('multer');
 const { cloudinary, storage } = require('../cloudeconfig');
 const upload = multer({ storage });
+ // adjust path as needed
 
 
 // index route and create route

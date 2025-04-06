@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 
+
+
+// adjust path as needed
+
 const reviewSchema = new Schema({
     comment :{
         type:String,
