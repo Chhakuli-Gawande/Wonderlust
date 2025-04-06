@@ -1,7 +1,8 @@
+require("dotenv").config(); // Should come before using env vars
+
 const express = require("express");
 const app = express();
-
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 10000;
 
 const mongoose = require("mongoose");
 const path = require("path");
@@ -14,22 +15,21 @@ const flash = require("connect-flash");
 const User = require("./model/user.js");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-require("dotenv").config();
 
 // MongoDB Connection
 const dbUrl = process.env.ATLASDB_URL;
 
-main()
-  .then(() => {
-    console.log(" Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.log("MongoDB Connection Error:", err);
-  });
-
 async function main() {
   await mongoose.connect(dbUrl);
 }
+
+main()
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.error("MongoDB Connection Error:", err);
+  });
 
 // View Engine Setup
 app.set("view engine", "ejs");
@@ -59,8 +59,8 @@ const store = MongoStore.create({
   touchAfter: 24 * 3600,
 });
 
-store.on("error", (err) => {
-  console.log(" Error in Mongo session store", err);
+store.on("error", function (err) {
+  console.error(" Error in Mongo session store", err);
 });
 
 const sessionOptions = {
@@ -69,7 +69,7 @@ const sessionOptions = {
   resave: false,
   saveUninitialized: true,
   cookie: {
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
   },
@@ -93,19 +93,18 @@ app.use((req, res, next) => {
   next();
 });
 
+// Routes
+const listingsRoutes = require("./routes/listings");
+const reviewsRoutes = require("./routes/reviews");
+const userRoutes = require("./routes/user");
 
 app.get("/", (req, res) => {
   res.redirect("/listings");
 });
 
-// Routes
-const listingsRoutes = require("./routes/listings");
-const reviews = require("./routes/reviews");
-const user = require("./routes/user");
-
 app.use("/listings", listingsRoutes);
-app.use("/listings", reviews);
-app.use("/", user);
+app.use("/listings", reviewsRoutes);
+app.use("/", userRoutes);
 
 // 404 Handler
 app.all("*", (req, res, next) => {
@@ -120,5 +119,5 @@ app.use((err, req, res, next) => {
 
 // Start Server
 app.listen(port, () => {
-  console.log(` Server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
